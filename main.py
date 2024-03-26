@@ -1,21 +1,23 @@
 from openai import OpenAI
 import sys
 
-def openAI():
+
+def openai():
     client = OpenAI(
         api_key=sys.argv[1],
     )
 
-    completion = client.chat.completions.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-            {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+            {"role": "system", "content": "Translate into Spanish: As a beginner data scientist, I'm excited to learn about OpenAI API!"}
         ]
     )
-    return (print(completion.choices[0].message))
+    output = response.choices[0].message.content
+
+    return output
 
 
 if __name__ == '__main__':
-    openAI()
+    print(openai())
 
